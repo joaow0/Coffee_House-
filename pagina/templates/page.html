@@ -1,0 +1,200 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'pagina/css/style.css' %}"> 
+    <!--link font awesome para os ícones-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--link swiper para o carrossel-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar section-content">
+            <a class="nav-logo" href="#">
+                <h2 class="logo-text"> ☕ Coffee</h2>
+            </a>
+            <ul class="nav-menu">
+                <button id="menu-close-button" class="fas fa-times"></button>
+                <li><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li><a class="nav-link" href="#about">Sobre</a></li>
+                <li><a class="nav-link" href="#menu">Menu</a></li>
+                <li><a class="nav-link" href="#testimonials">Avaliações</a></li>
+                <li><a class="nav-link" href="#gallery">Imagens</a></li>
+                <li><a class="nav-link" href="#contact">Contato</a></li>
+            </ul>
+
+            <button id="menu-open-button" class="fas fa-bars"></button>
+
+        </nav>
+    </header>
+    <main>
+        <!--Hero Section-->
+        <section class="hero-section">
+            <div class="section-content">
+                <div class="hero-details">
+                    <h2 class="title">Melhor Café da Cidade</h2>
+                    <h3 class="subtitle">Faça seu dia ser incrivel com nosso café especial</h3>
+                    <p class="description">Bem-vindo ao nosso café, onde cada xícara é uma experiência única.</p>
+
+                    <div class="buttons">
+                        <a href="#" class="button order-now">Peça Agora</a>
+                        <a href="{% url 'contacts' %}" class="button contact-us">Contato-nos</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="{% static 'pagina/imagens/coffee-hero-section.png' %}" alt="Café">
+                </div>
+            </div>
+        </section>
+
+        <!--About Section-->
+        <section class="about-section" id="about">
+            <div class="section-content">
+                <div class="about-image-wrapper">
+                    <img src="{% static 'pagina/imagens/about-image.jpg' %}" alt="about" class="about-image">
+                </div>
+                <div class="about-details">
+                    <h2 class="section-title">Sobre Nós</h2>
+                    <p class="text">Na Coffee House, oferecemos uma experiência única para os amantes de café. Venha nos visitar!</p>
+                    <div class="social-link-list">
+                        <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Menu Section-->
+        <section class="menu-section" id="menu">
+            <h2 class="section-title">Nosso Menu</h2>
+            <div class="section-content">
+                <ul class="menu-list">
+                    {% for product in products %}
+                    <li class="menu-item">
+                        <img src="{{ product.imagem.url }}" alt="{{ product.nome }}" class="menu-image">
+                        <h3 class="name">{{ product.nome }}</h3>
+                        <p class="text">{{ product.descricao }}</p>
+                    </li>
+                    {% empty %}
+                    <li class="menu-item">
+                        <p class="text">Nenhum produto disponível.</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+        <!--Testimonials Section-->
+        <section class="testimonials-section" id="testimonials">
+            <h2 class="section-title">Avaliações</h2>
+                <div class="section-content">
+                    <div class="slider-container swiper">
+                        <div class="slider-wrapper">
+                            <ul class="testimonials-list swiper-wrapper">
+                                {% for testimonial in testimonials %}
+                                <li class="testimonial swiper-slide">
+                                    <img src="{{ testimonial.imagem.url }}" alt="" class="user-image">
+                                    <h3 class="name">{{ testimonial.nome }}</h3>
+                                    <p class="text">{{ testimonial.mensagem }}</p>
+                                </li>
+                                {% empty %}
+                                <li>
+                                    <p class="text">Nenhuma avaliação disponível.</p>
+                                </li>
+                                {% endfor %}
+                            </ul>
+
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-slide-button swiper-button-prev"></div>
+                            <div class="swiper-slide-button swiper-button-next"></div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!--Gallery Section-->
+        <section class="gallery-section" id="gallery">
+            <h2 class="section-title">Galeria</h2>
+            <div class="section-content">
+                <ul class="gallery-list">
+                    {% for imagem in gallery %}
+                    <li class="gallery-item">
+                        <img class="gallery-image" src="{{ imagem.imagem.url }}" alt="">
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+        <!--contact section-->
+        <section class="contact-section" id="contact">
+            <h2 class="section-title">Contate-nos</h2>
+            <div class="section-content">
+                <ul class="contact-info-list">
+                    <li class="contact-info">
+                        <i class="fa-solid fa-location-crosshairs"></i>
+                        <p>123 Centro, Rio De Janeiro, BR</p> 
+                    </li>
+                    <li class="contact-info">
+                        <i class="fa-regular fa-envelope"></i>
+                        <p>info@coffehome.com</p> 
+                    </li>
+                    <li class="contact-info">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>(22) 2222-2222</p> 
+                    </li>
+                    <li class="contact-info">
+                        <i class="fa-regular fa-clock"></i>
+                        <p>Segunda - Sexta: 7h - 15h</p> 
+                    </li>
+                    <li class="contact-info">
+                        <i class="fa-regular fa-clock"></i>
+                        <p>Sabado - Domingo: Fechado</p> 
+                    </li>
+                    <li class="contact-info">
+                        <i class="fa-solid fa-globe"></i>
+                        <p>www.coffehome.com</p> 
+                    </li>
+                </ul>
+                <form action="{% url 'home' %}" method="post" class="contact-form">
+                    {% csrf_token %}
+                    <input type="text" name="nome" class="form-input" placeholder="Seu Nome" required>
+                    <input type="email" name="email" class="form-input" placeholder="Seu Email" required>
+                    <textarea name="mensagem" class="form-input" placeholder="Sua Mensagem" required></textarea>
+                    <button type="submit" class="button submit-button">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+
+        <!--footer-->
+        <footer class="footer-section">
+            <div class="section-content">
+                <p class="copyright-text">&copy; 2025 Coffee Home. Todos os direitos reservados.</p>
+
+                <div class="social-link-list">
+                    <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+
+                <p class="policy-text">
+                    <a href="#" class="policy-link">Politica de privacidade</a>
+                    <span class="separator">*</span>
+                    <a href="#" class="policy-link">Termos de Serviço</a>
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <!--link swiper para o carrossel-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{% static 'pagina/js/script.js' %}"></script>
+</body>
+</html>
+{% endblock %}

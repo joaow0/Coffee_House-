@@ -1,0 +1,81 @@
+.about-section {
+    padding: 120px 0;
+    background: var(--light-pink-color);
+}
+
+.about-section .section-content {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.about-section .about-image-wrapper .about-image {
+    width: 400px;
+    height: 400px;
+    object-fit: cover; /*define como o conteúdo de uma tag <img> ou <video> se ajusta dentro do contêiner (ou seja, dentro da width e height definida.*/
+    /*
+    contain	Mostra a imagem inteira, mesmo que sobre espaço
+    cover	Cobre todo o espaço, mesmo que corte um pedaço
+    fill	Estica a imagem pra caber (pode distorcer)
+    none	Mostra a imagem em tamanho original
+    scale-down	Mostra menor entre none e contain
+    */
+    border-radius: var(--border-radius-circle);
+}
+
+
+
+.about-section .about-details .section-title {
+    padding: 0;
+}
+
+
+.about-section .about-details {
+    max-width: 50%;
+}
+
+
+
+.about-section .about-details .text {
+    line-height: 30px;
+    margin: 50px 0 30px;
+    text-align: center;
+    font-size: var(--font-size-m);
+}
+
+
+.about-section .social-link-list {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+}
+
+
+.about-section .social-link-list .social-link {
+    color: var(--primary-color);
+    font-size: var(--font-size-1);
+    transition: 0.2s ease;
+}
+
+.about-section .social-link-list .social-link:hover {
+    color: var(--secondary-color);
+}
+
+
+@media screen and (max-width: 900px) {
+    .about-section .section-content {
+        gap: 70px;
+        flex-direction: column;
+    }
+
+    .about-section .about-image-wrapper .about-image {
+        width: 100%;
+        height: 100%;
+        max-width: 250px;
+        aspect-ratio: 1;
+    }
+
+    
+}
