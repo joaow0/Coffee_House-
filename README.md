@@ -58,3 +58,6 @@ Navegue pelo menu para explorar as opções de bebidas, sobremesas e aperitivos.
 Para a versão mobile, o menu será adaptável para facilitar o uso em dispositivos menores.
 
 No carrossel de avaliações, você poderá ver o que os clientes estão dizendo sobre o Coffee House.
+
+
+Ainda está sendo planejado para ser adicionado mais funcionalidades e telas
